@@ -11,7 +11,6 @@ spec:
     # Source is the Git repository containing this Application manifest and the wrapper chart
     repoURL: https://github.com/gergelysotidm/playground-data-platform-stack.git # Ensure this is your repo URL
     path: argo/apps/350-external-secrets # Path to the wrapper chart directory within the Git repo
-    targetRevision: cloudfleet # Or your specific branch/tag
 
     # Helm configuration for the wrapper chart
     helm:
