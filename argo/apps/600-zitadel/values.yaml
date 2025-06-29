@@ -6,7 +6,7 @@ zitadel:
       ExternalSecure: true
       ExternalDomain: zitadel.upcloud.playground.dataminded.cloud
       TLS:
-        Enabled: false
+        Enabled: true
       FirstInstance:
         Org:
           Human:
