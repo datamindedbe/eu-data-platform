@@ -126,14 +126,14 @@ resource "kubernetes_secret" "zitadel_db" {
   type = "Opaque"
 }
 
-resource "kubernetes_secret" "db_certficate" {
-  metadata {
-    name      = "pg-certificate"
-    namespace = kubernetes_namespace.services.metadata[0].name
-  }
-
-  data = {
-    "ca.crt" = upcloud_managed_database_postgresql.this.
-  }
-  type = "Opaque"
-}
+# resource "kubernetes_secret" "db_certficate" {
+#   metadata {
+#     name      = "pg-certificate"
+#     namespace = kubernetes_namespace.services.metadata[0].name
+#   }
+#
+#   data = {
+#     "ca.crt" = upcloud_managed_database_postgresql.this.
+#   }
+#   type = "Opaque"
+# }
