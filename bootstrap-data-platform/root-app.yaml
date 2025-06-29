@@ -9,11 +9,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/datamindedbe/eu-data-platform.git # Replace if your repo URL is different
+    repoURL: https://github.com/gergelysotidm/eu-data-platform.git # Replace if your repo URL is different
     targetRevision: HEAD # Or specify a branch/tag
     path: argo/apps # Directory containing the application manifests
     directory:
       recurse: true # Automatically discover apps in subdirectories
+      include: "**/application.yaml" # Only include files named application.yaml
   destination:
     server: https://kubernetes.default.svc # Target the local cluster
     # Namespace is not needed here as child apps define their own destinations

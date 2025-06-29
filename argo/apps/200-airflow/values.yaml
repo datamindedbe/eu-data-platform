@@ -51,7 +51,7 @@ airflow:
 
     gitSync:
       enabled: true
-      repo: "https://github.com/datamindedbe/eu-data-platform.git"  # Replace with your repo
+      repo: "https://github.com/gergelysotidm/eu-data-platform.git"  # Replace with your repo
       branch: "main"  # Or whatever branch you want
       subPath: "dags"  # Path within the repo where DAGs are stored
       depth: 1
