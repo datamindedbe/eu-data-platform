@@ -10,7 +10,7 @@ traefik:
       entryPoints:
         - websecure
       # Define the matching rule for the dashboard route
-      matchRule: Host(`traefik.upcloud.playground.dataminded.cloud`)
+      matchRule: Host(`traefik.ovh.playground.dataminded.cloud`)
     tls:
       certResolver: letsencrypt
 

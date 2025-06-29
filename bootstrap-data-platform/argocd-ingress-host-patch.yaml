@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
 spec:
   rules:
-  - host: argocd.upcloud.playground.dataminded.cloud
+  - host: argocd.ovh.playground.dataminded.cloud
     http:
       paths:
       - path: /

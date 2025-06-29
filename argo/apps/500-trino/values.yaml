@@ -62,7 +62,7 @@ trino:
       # Enable TLS with Let's Encrypt
       traefik.ingress.kubernetes.io/router.tls.certresolver: "letsencrypt"
     hosts: 
-      - host: trino.upcloud.playground.dataminded.cloud
+      - host: trino.ovh.playground.dataminded.cloud
         paths:
           - path: /
             pathType: Prefix

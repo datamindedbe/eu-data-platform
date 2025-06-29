@@ -4,6 +4,8 @@
 - run `terraform apply` in the `k8s` folder
   - after this, you should have a k8s cluster. The kubeconfig file is in the k8s folder, named `.kubeconfig.yml`
   - export the kubeconfig env variable `export KUBECONFIG=\`pwd\`/.kubeconfig.yml`
+  - find the hostname of the load balancer which is created for traefik. Create an A * record in your domain pointing to this hostname
+    - e.g. '*.ovh.playground.dataminded.cloud' should point to the IP address of the load balancer
 - follow the instructions in the `bootstrap-data-platform`
 - make sure that at least some of the services are running
 - run `terraform apply` in the `zitadel` folder

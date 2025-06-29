@@ -5,4 +5,4 @@ metadata:
   name: argocd-cm
 data:
   # Set the external URL so ArgoCD knows how it's being accessed
-  url: https://argocd.upcloud.playground.dataminded.cloud
+  url: https://argocd.ovh.playground.dataminded.cloud

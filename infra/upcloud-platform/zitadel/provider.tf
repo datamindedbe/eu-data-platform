@@ -9,7 +9,7 @@ terraform {
 
 provider "zitadel" {
   # Configuration options
-  domain           = "zitadel.upcloud.playground.dataminded.cloud"
+  domain           = "zitadel.ovh.playground.dataminded.cloud"
   insecure         = "true"
   jwt_profile_file = "token.json"
   # token = "token.json"

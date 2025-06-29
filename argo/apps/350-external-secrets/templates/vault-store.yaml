@@ -5,7 +5,7 @@ metadata:
 spec:
   provider:
     vault:
-      server: "https://vault.upcloud.playground.dataminded.cloud"
+      server: "https://vault.ovh.playground.dataminded.cloud"
       path: "secrets"
       version: "v2"
       auth:

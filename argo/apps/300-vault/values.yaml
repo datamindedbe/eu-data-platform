@@ -25,5 +25,5 @@ vault:
         # Vault UI backend service uses HTTP (port 8200)
         traefik.ingress.kubernetes.io/router.tls.certresolver: "letsencrypt"
       hosts:
-      - host: vault.upcloud.playground.dataminded.cloud
+      - host: vault.ovh.playground.dataminded.cloud
 

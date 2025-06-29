@@ -20,7 +20,7 @@ spec:
   # Traefik might generate a default cert if none is specified
   ingressClassName: traefik # Specify the ingress class if needed
   rules:
-  - host: argocd.upcloud.playground.dataminded.cloud # Replace with your ArgoCD server host
+  - host: argocd.ovh.playground.dataminded.cloud # Replace with your ArgoCD server host
     http:
       paths:
       - path: /
