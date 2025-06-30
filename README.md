@@ -17,6 +17,6 @@
 * make sure you have a host for this project, lots of services want SSL
 * fork the repo (you will need this for argocd)
 * pick a provider in the infra folder and follow the instructions there
-* follow the readme in the bootstrap folder
+* follow the readme in the bootstrap-data-platform folder
 * make sure all the services are running
 * deploy the Airflow DAGs
