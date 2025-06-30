@@ -8,13 +8,30 @@ resource "ovh_cloud_project_database" "pgsqldb" {
     region  = "GRA"
   }
   flavor        = "db1-4"
+  ip_restrictions {
+    ip = "0.0.0.0/0"
+  }
 }
 
 resource "ovh_cloud_project_database_database" "zitadel" {
+  name = "zitadel"
   service_name = var.service_name
   engine = ovh_cloud_project_database.pgsqldb.engine
   cluster_id = ovh_cloud_project_database.pgsqldb.id
-  name = "zitadel"
+}
+
+resource "ovh_cloud_project_database_database" "lakekeeper_db" {
+  name = "lakekeeper"
+  service_name = var.service_name
+  engine = ovh_cloud_project_database.pgsqldb.engine
+  cluster_id = ovh_cloud_project_database.pgsqldb.id
+}
+
+resource "ovh_cloud_project_database_database" "trino_catalog_db" {
+  name = "catalog"
+  service_name = var.service_name
+  engine = ovh_cloud_project_database.pgsqldb.engine
+  cluster_id = ovh_cloud_project_database.pgsqldb.id
 }
 
 resource "ovh_cloud_project_database_postgresql_user" "user" {
@@ -55,16 +72,16 @@ resource "kubernetes_secret" "zitadel_db" {
         Port: ${data.ovh_cloud_project_database.pgsqldb.endpoints[0].port}
         Database: zitadel
         User:
-          Username: ${ovh_cloud_project_database_postgresql_user.user.name}
-          Password: ${ovh_cloud_project_database_postgresql_user.user.password}
+          Username: ${var.pg_admin_user}
+          Password: ${var.pg_admin_password}
           SSL:
-            Mode: prefer
+            Mode: require
         Admin:
-          Username: ${ovh_cloud_project_database_postgresql_user.user.name}
-          Password: ${ovh_cloud_project_database_postgresql_user.user.password}
+          Username: ${var.pg_admin_user}
+          Password: ${var.pg_admin_password}
           ExistingDatabase: defaultdb
           SSL:
-            Mode: prefer
+            Mode: require
   EOF
   }
   type = "Opaque"

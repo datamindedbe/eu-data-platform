@@ -29,12 +29,11 @@ zitadel:
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
       traefik.ingress.kubernetes.io/router.tls: "true"
       traefik.ingress.kubernetes.io/service.serversscheme: "h2c"
-  service:
-    annotations:
-      traefik.ingress.kubernetes.io/service.serversscheme: h2c
-    hosts: 
+    hosts:
       - host: zitadel.ovh.playground.dataminded.cloud
         paths:
           - path: /
             pathType: Prefix
-
+  service:
+    annotations:
+      traefik.ingress.kubernetes.io/service.serversscheme: h2c
