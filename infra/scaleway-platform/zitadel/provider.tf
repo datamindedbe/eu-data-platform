@@ -1,6 +1,6 @@
 provider "zitadel" {
   # Configuration options
-  domain           = "zitadel.ovh.playground.dataminded.cloud"
+  domain           = "zitadel.scaleway.playground.dataminded.cloud"
   jwt_profile_file = "token.json"
 }
 

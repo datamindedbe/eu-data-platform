@@ -1,34 +1,3 @@
-resource "scaleway_k8s_cluster" "k8s" {
-  cni                         = "cilium"
-  delete_additional_resources = false
-  name                        = "scaleway-k8s-cluster"
-  version                     = "1.32.3"
-  private_network_id = scaleway_vpc_private_network.private_1.id
-}
-
-resource "scaleway_k8s_pool" "pool" {
-  cluster_id = scaleway_k8s_cluster.k8s.id
-  name       = "default-pool"
-  node_type  = "DEV1-M"
-  size       = 3
-}
-
-resource "local_sensitive_file" "kubeconfig" {
-  filename        = "${path.module}/.kubeconfig.yml"
-  content         = scaleway_k8s_cluster.k8s.kubeconfig[0].config_file
-  file_permission = "0600"
-}
-
-provider "kubernetes" {
-  config_path = local_sensitive_file.kubeconfig.filename
-}
-
-
-resource "kubernetes_namespace" "services" {
-  metadata {
-    name = "services"
-  }
-}
 
 resource "kubernetes_secret" "s3_credentials" {
   metadata {
@@ -46,6 +15,36 @@ resource "kubernetes_secret" "s3_credentials" {
   type = "Opaque"
 }
 
+resource "kubernetes_secret" "zitadel_db" {
+  metadata {
+    name = "zitadel-credentials"
+    namespace = kubernetes_namespace.services.metadata[0].name
+
+  }
+  //TODO: use TLS
+  data = { "config.yaml": <<EOF
+    Database:
+      Postgres:
+        Host: ${scaleway_rdb_instance.main.endpoint_ip}
+        Port: ${scaleway_rdb_instance.main.load_balancer[0].port}
+        Database: zitadel
+        User:
+          Username: ${scaleway_rdb_instance.main.user_name}
+          Password: ${scaleway_rdb_instance.main.password}
+          SSL:
+            Mode: prefer
+        Admin:
+          Username: ${scaleway_rdb_instance.main.user_name}
+          Password: ${scaleway_rdb_instance.main.password}
+          ExistingDatabase: zitadel
+          SSL:
+            Mode: prefer
+  EOF
+  }
+  type = "Opaque"
+
+}
+
 resource "kubernetes_secret" "pg_credentials" {
   metadata {
     name      = "pg-credentials"
@@ -58,6 +57,18 @@ resource "kubernetes_secret" "pg_credentials" {
     HOST     = scaleway_rdb_instance.main.endpoint_ip
     PORT     = scaleway_rdb_instance.main.load_balancer[0].port
     URI      = "jdb:postgresql://${scaleway_rdb_instance.main.endpoint_ip}"
+  }
+  type = "Opaque"
+}
+
+resource "kubernetes_secret" "db_certficate" {
+  metadata {
+    name      = "pg-certificate"
+    namespace = kubernetes_namespace.services.metadata[0].name
+  }
+
+  data = {
+    "ca.crt" = scaleway_rdb_instance.main.certificate
   }
   type = "Opaque"
 }

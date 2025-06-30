@@ -14,8 +14,8 @@ terraform {
 }
 
 provider "scaleway" {
-  zone   = "nl-ams-1"
-  region = "nl-ams"
+  zone   = local.zone_1
+  region = local.region
   project_id = local.project_id
   organization_id = local.organisation_id
 }
