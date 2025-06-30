@@ -18,7 +18,10 @@ We will use ArgoCD to deploy the rest of the Data Platform stack.
     ```bash
     kubectl apply -k bootstrap-data-platform
     ```
-    This command uses Kustomize (via `kubectl`) to apply the manifests defined in `bootstrap/kustomization.yaml` (including the namespace, ArgoCD manifests, and the Ingress) to your currently configured Kubernetes cluster.
+    This command uses Kustomize (via `kubectl`) to apply the manifests defined in `bootstrap/kustomization.yaml` 
+    (including the namespace, ArgoCD manifests, and the Ingress) to your currently configured Kubernetes cluster.
+
+    You will need to port-forward the argocd pod so you can take a look. Initial admin credentials are in k8s in the argocd namespace
 
 3.  **Apply the Root Application:**
     Once ArgoCD is running, apply the root application manifest. This tells ArgoCD to manage other applications defined in your Git repository (`argo/apps` directory).

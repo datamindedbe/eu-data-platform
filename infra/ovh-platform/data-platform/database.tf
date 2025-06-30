@@ -21,7 +21,7 @@ resource "ovh_cloud_project_database_postgresql_user" "user" {
   service_name  = ovh_cloud_project_database.pgsqldb.service_name
   cluster_id    = ovh_cloud_project_database.pgsqldb.id
   name          = "admin"
-  roles         = ["admin"]
+  roles         = ["replication"]
 }
 
 output "user_password" {
@@ -51,8 +51,8 @@ resource "kubernetes_secret" "zitadel_db" {
   data = { "config.yaml": <<EOF
     Database:
       Postgres:
-        Host: ${data.ovh_cloud_project_database.pgsqldb.endpoints.uri}
-        Port: ${data.ovh_cloud_project_database.pgsqldb.endpoints.port}
+        Host: ${data.ovh_cloud_project_database.pgsqldb.endpoints[0].domain}
+        Port: ${data.ovh_cloud_project_database.pgsqldb.endpoints[0].port}
         Database: zitadel
         User:
           Username: ${ovh_cloud_project_database_postgresql_user.user.name}

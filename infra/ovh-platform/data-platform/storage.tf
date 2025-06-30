@@ -3,6 +3,6 @@ resource "ovh_cloud_project_storage" "storage" {
   region_name = "GRA"
   name = "dp-storage"
   versioning = {
-    status = "disabled"
+    status = "enabled"
   }
 }
