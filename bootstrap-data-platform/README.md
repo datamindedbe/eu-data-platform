@@ -1,8 +1,12 @@
 # Bootstrap ArgoCD
 
 This directory contains the configuration to bootstrap ArgoCD onto the Kubernetes cluster.
+We will use ArgoCD to deploy the rest of the Data Platform stack.
 
 ## Steps
+0.  **Adjust hostnames and git repo:**
+    - replace https://argocd.ovh.playground.dataminded.cloud with whatever hostname you want to use for this project 
+    - in the root-app.yaml file, replace the git repo with the URL of your git repo
 
 1.  **Define Namespace, ArgoCD Resources, and Ingress:**
     - The `namespace.yaml` file explicitly defines the `argocd` namespace.
