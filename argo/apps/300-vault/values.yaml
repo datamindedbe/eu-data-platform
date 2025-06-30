@@ -16,7 +16,7 @@ vault:
     # Configure Ingress for the UI
     ingress:
       enabled: true
-      # ingressClassName: traefik # Use this if you have a default IngressClass
+      ingressClassName: traefik # Use this if you have a default IngressClass
       annotations:
         # Use Traefik's websecure entrypoint for HTTPS
         traefik.ingress.kubernetes.io/router.entrypoints: websecure
