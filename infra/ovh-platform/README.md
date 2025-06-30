@@ -3,15 +3,23 @@ https://www.ovh.com/auth/api/createToken?GET=/*&POST=/*&PUT=/*&DELETE=/*
 
 and export the following env variables:
 ```
-export OVH_CONSUMER_KEY=79444139c76f61b4197ad55326c03f82
-export OVH_APPLICATION_KEY=32ecebe15d50bf6b
-export OVH_APPLICATION_SECRET=7b33f3cfbbc9a9d30ec3b3698b0f4875
+export OVH_CONSUMER_KEY=
+export OVH_APPLICATION_KEY=
+export OVH_APPLICATION_SECRET=
 ```
 
 2. Adjust your project id in `k8s/vars.tf`
 3. run `tf apply` in `k8s`
-
-
+4. follow the instructions in `bootstrap-data-platform`
+5. run `tf apply` in `data-platform`
+6. in the OVH console, find the database created (dp) and reset the admin password 
+7. create a file called `terraform.tfvars` with the following contents
+```text
+pg_admin_password = "YOUR PASSWORD HERE"
+pg_admin_user = "avnadmin"
+```
+8. run `tf apply` again so it sets the zitadel credentials correctly
+9. after this, zitadel should be up and running
 
 
 

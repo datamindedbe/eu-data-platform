@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
   annotations:
     # Specify Traefik as the ingress controller (if using legacy annotation)
-    # kubernetes.io/ingress.class: traefik
+    kubernetes.io/ingress.class: traefik
     # Use Traefik's websecure entrypoint for HTTPS
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     # Enable TLS termination at the router (Traefik will handle certs, often self-signed by default for testing)

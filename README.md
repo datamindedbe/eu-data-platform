@@ -48,7 +48,8 @@ The Data Engineers interact with the platform via the Airflow UI and via a datab
 ## Infra deployment
 * pick a provider in the `infra` folder and follow the instructions there
 * follow the readme in the `bootstrap-data-platform` folder
-* make sure all the services are running
+* if needed, continue bootstrapping the platform with the relevant infra provider (databases, credentials etc)
+* follow the readme in the argo folder
 
 ## Deploy some ETL jobs
 * deploy the Airflow DAGs

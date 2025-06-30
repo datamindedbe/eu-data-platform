@@ -61,8 +61,8 @@ traefik:
     letsencrypt:
       acme:
         # ACME CA server to use
-        caServer: https://acme-staging-v02.api.letsencrypt.org/directory
-#        caServer: https://acme-v02.api.letsencrypt.org/directory
+#        caServer: https://acme-staging-v02.api.letsencrypt.org/directory
+        caServer: https://acme-v02.api.letsencrypt.org/directory
         # Email address used for registration
         email: gergely.soti@dataminded.com
         # File or key used for certificates storage
