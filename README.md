@@ -54,3 +54,9 @@ The Data Engineers interact with the platform via the Airflow UI and via a datab
 
 ## Deploy some ETL jobs
 * deploy the Airflow DAGs
+
+# Contributors
+
+<a href="https://github.com/datamindedbe/eu-data-platform/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=datamindedbe/eu-data-platform" />
+</a>
