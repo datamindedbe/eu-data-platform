@@ -1,6 +1,10 @@
 # Data Platform Stack
 
-This repository contains the code discussed in the following blogpost [Rethinking data platforms in the age of digital sovereignty](https://medium.com/datamindedbe/portable-by-design-rethinking-data-platforms-in-the-age-of-digital-sovereignty-8ccbfd8e549f).
+This repository contains the code discussed in the following blogposts:
+
+- [Rethinking data platforms in the age of digital sovereignty](https://medium.com/datamindedbe/portable-by-design-rethinking-data-platforms-in-the-age-of-digital-sovereignty-8ccbfd8e549f)
+- [Locking down your data: fine-grained data access on EU Clouds](https://medium.com/datamindedbe/locking-down-your-data-fine-grained-data-access-on-eu-clouds-41e3d5108062)
+
 The project consists of the infrastructure for each of the EU cloud providers as well as the opensource components that make up the data platform.
 * The open source components are:
   * Trino
@@ -18,6 +22,7 @@ The project consists of the infrastructure for each of the EU cloud providers as
 
 ## Architecture
 ![Architecture](docs/architecture.png)
+
 The core of the platform is a Trino cluster, providing a SQL-like interface to data. This is used by
 * data engineers who can query the data via a database client 
 * jobs scheduled by Airflow
@@ -32,7 +37,9 @@ Supporting components:
 The Data Engineers interact with the platform via the Airflow UI and via a database client connecting to Trino.
 
 # Deploying the platform
+
 ## Tools needed
+
 * [OpenTofu](https://opentofu.org/) 
 * [Kubectl](https://kubernetes.io/docs/reference/kubectl/)
 * [Helm](https://helm.sh/)
