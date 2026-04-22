@@ -36,3 +36,40 @@ resource "ionoscloud_k8s_node_pool" "example" {
     dhcp                = true
   }
 }
+
+data "ionoscloud_k8s_cluster" "dp_cluster" {
+  name     = ionoscloud_k8s_cluster.dp_cluster.name
+}
+
+resource "local_sensitive_file" "kubeconfig" {
+  filename        = "${path.module}/.kubeconfig.yml"
+  content         = yamlencode(jsondecode(data.ionoscloud_k8s_cluster.dp_cluster.kube_config))
+  file_permission = "0600"
+}
+
+provider "kubernetes" {
+  config_path = local_sensitive_file.kubeconfig.filename
+}
+
+
+resource "kubernetes_namespace" "services" {
+  metadata {
+    name = "services"
+  }
+}
+
+resource "kubernetes_namespace" "traefik" {
+  metadata {
+    name = "traefik"
+  }
+
+  depends_on = [ionoscloud_k8s_node_pool.example]
+}
+
+resource "kubernetes_namespace" "opa" {
+  metadata {
+    name = "opa"
+  }
+
+  depends_on = [ionoscloud_k8s_node_pool.example]
+}

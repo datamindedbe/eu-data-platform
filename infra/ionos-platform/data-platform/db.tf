@@ -1,6 +1,6 @@
 resource "ionoscloud_pg_cluster" "main" {
   postgres_version = "16"
-  display_name = "dp-ionos-cluster"
+  display_name = "dp-ionos-postgres"
   location          = "de/fra"
   synchronization_mode  = "ASYNCHRONOUS"
   backup_location   = "de"
@@ -17,7 +17,7 @@ resource "ionoscloud_pg_cluster" "main" {
   connections {
     datacenter_id            = ionoscloud_datacenter.frankfurt.id
     lan_id                   = ionoscloud_lan.frankfurt_private.id
-    cidr = "192.168.1.100/24"
+    cidr = "10.7.222.3/24" # Adjust this CIDR to match your LAN configuration
   }
 
   maintenance_window {
